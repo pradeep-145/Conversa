@@ -38,4 +38,12 @@ const register = async(req, res) => {
     })
 }
 
-module.exports = { register, login }
+const logout=(req,res)=>{
+    try {
+        res.cookie('jwt','',{maxAge:0})
+        res.status(200).json({message:"logged out succesfully"})
+    } catch (error) {
+        console.log(error);
+    }
+}
+module.exports = { register, login, logout }
