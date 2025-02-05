@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken')
-const { verify } = require('../utils/jwtUtils')
+const { verify } = require('../utils/jwt.utils')
 
 const authMiddleware = (req, res, next) => {
     const token = req.header('Authorization')?.replace('Bearer ', '');

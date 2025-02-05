@@ -1,5 +1,5 @@
-const userModel = require('../models/userModel')
-const { generateToken } = require('../utils/jwtUtils')
+const userModel = require('../models/user.model')
+const { generateToken } = require('../utils/jwt.utils')
 const bcrypt=require('bcryptjs')
 const login = (req, res) => {
     const { username, password } = req.body;
