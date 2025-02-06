@@ -1,19 +1,19 @@
 const userModel = require('../models/user.model')
 const { generateToken } = require('../utils/jwt.utils')
-const bcrypt=require('bcryptjs')
+const bcrypt = require('bcryptjs')
 const login = (req, res) => {
     const { username, password } = req.body;
     userModel.findOne({ username: username }).then((result) => {
-        if (bcrypt.compare(password,result.password)) {
+        if (bcrypt.compare(password, result.password)) {
             const payload = {
                 userId: result._id,
                 username: username,
             }
             const token = generateToken(payload);
-            res.cookie('jwt',token,{
-                maxAge:60*60*1000,
-                httpOnly:true,
-                sameSite:"strict",
+            res.cookie('jwt', token, {
+                maxAge: 60 * 60 * 1000,
+                httpOnly: true,
+                sameSite: "strict",
             })
             res.status(200).json({ success: true, token: token });
         }
@@ -27,21 +27,21 @@ const login = (req, res) => {
 
 }
 
-const register = async(req, res) => {
-    const {username,name,password}=req.body;
-    const hashedPassword=await bcrypt.hash(password,10)
-    userModel.create({username:username, name:name, password:hashedPassword}).then((result) => {
-        res.status(201).json({ success: true ,message:result})
+const register = async (req, res) => {
+    const { username, name, password } = req.body;
+    const hashedPassword = await bcrypt.hash(password, 10)
+    userModel.create({ username: username, name: name, password: hashedPassword }).then((result) => {
+        res.status(201).json({ success: true, message: result })
     }).catch((error) => {
         console.log(error)
         res.status(409).json(error)
     })
 }
 
-const logout=(req,res)=>{
+const logout = (req, res) => {
     try {
-        res.cookie('jwt','',{maxAge:0})
-        res.status(200).json({message:"logged out succesfully"})
+        res.cookie('jwt', '', { maxAge: 0 })
+        res.status(200).json({ message: "logged out succesfully" })
     } catch (error) {
         console.log(error);
     }

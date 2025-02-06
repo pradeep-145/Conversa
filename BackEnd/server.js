@@ -7,6 +7,7 @@ const app = express()
 const userModel = require('./models/user.model')
 const authRoute = require('./routes/auth.route')
 const messageRoute = require('./routes/message.route')
+const userRoute = require('./routes/user.route')
 const cookieParser = require('cookie-parser')
 app.use(express.json())
 app.use(cors())
@@ -16,8 +17,9 @@ mongoose.connect(process.env.MONGODB_URI).then(() => {
 }).catch((err) => {
     console.log(err)
 })
-app.use('/api/auth/', authRoute);
+app.use('/api/auth', authRoute);
 app.use('/api/messages', messageRoute)
+app.use('/api/users', userRoute)
 app.listen(3000, () => {
     console.log("server is running on http://localhost:3000/")
 })
