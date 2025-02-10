@@ -9,3 +9,20 @@ body{
     background-position: center;
     background-attachment: fixed;
 }
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ff00ff;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #ff00ff;
+}
+
+::-webkit-scrollbar-track {
+    background: #ff00ff;
+}
