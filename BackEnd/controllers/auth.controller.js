@@ -28,9 +28,10 @@ const login = (req, res) => {
 }
 
 const register = async (req, res) => {
-    const { username, name, password } = req.body;
+    
+    const { username, name, password,gender } = req.body.inputs;
     const hashedPassword = await bcrypt.hash(password, 10)
-    userModel.create({ username: username, name: name, password: hashedPassword }).then((result) => {
+    userModel.create({ username: username, name: name, password: hashedPassword,gender:gender }).then((result) => {
         res.status(201).json({ success: true, message: result })
     }).catch((error) => {
         console.log(error)

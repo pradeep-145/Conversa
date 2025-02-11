@@ -13,6 +13,10 @@ const userModel = new mongoose.Schema({
     password: {
         type: String,
         required: true,
+    },
+    gender:{
+       type:String,
+       required:true
     }
 
 }, { timestamps: true })
