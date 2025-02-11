@@ -10,7 +10,14 @@ const messageRoute = require('./routes/message.route')
 const userRoute = require('./routes/user.route')
 const cookieParser = require('cookie-parser')
 app.use(express.json())
-app.use(cors())
+
+app.use(cors({
+    origin: "http://localhost:3001", // Frontend URL
+    credentials: true, // Allow sending cookies
+    allowedHeaders: ["Content-Type", "Authorization"],
+    methods: ["GET", "POST", "PUT", "DELETE"] // Allow necessary methods
+}));
+
 app.use(cookieParser())
 mongoose.connect(process.env.MONGODB_URI).then(() => {
     console.log("connected to mongodb")

@@ -11,11 +11,11 @@ const login = (req, res) => {
             }
             const token = generateToken(payload);
             res.cookie('jwt', token, {
-                maxAge: 60 * 60 * 1000,
+                maxAge: 15*24*60 * 60 * 1000,
                 httpOnly: true,
                 sameSite: "strict",
             })
-            res.status(200).json({ success: true, token: token });
+            res.status(200).json({ success: true, token: token,message: result });
         }
         else {
             res.status(401).json({ success: false });
@@ -31,7 +31,9 @@ const register = async (req, res) => {
     
     const { username, name, password,gender } = req.body.inputs;
     const hashedPassword = await bcrypt.hash(password, 10)
-    userModel.create({ username: username, name: name, password: hashedPassword,gender:gender }).then((result) => {
+    const boyProfilePic = `https://avatar.iran.liara.run/public/boy?username=${username}`;
+		const girlProfilePic = `https://avatar.iran.liara.run/public/girl?username=${username}`;
+    userModel.create({ username: username, name: name, password: hashedPassword,gender:gender,profilePic:gender==="male"?boyProfilePic:girlProfilePic }).then((result) => {
         res.status(201).json({ success: true, message: result })
     }).catch((error) => {
         console.log(error)
