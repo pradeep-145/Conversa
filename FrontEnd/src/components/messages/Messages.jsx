@@ -30,7 +30,7 @@ const Messages = () => {
     const getMessages=async ()=>{
       setLoading(true)
       try {
-        const res= await axios.get(`https://conversa-ucub.onrender.com/api/messages/${selectedConversation._id}`,{withCredentials:true});
+        const res= await axios.get(`https://conversa-jsog.onrender.com/api/messages/${selectedConversation._id}`,{withCredentials:true});
         
         setMessages(res.data)
         
