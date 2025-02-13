@@ -23,6 +23,7 @@ const Conversations =() => {
       }
       getConversations();
   },[]);
+  console.log(conversations)
 
   return (
     <div className='flex py-2 flex-col overflow-auto '>

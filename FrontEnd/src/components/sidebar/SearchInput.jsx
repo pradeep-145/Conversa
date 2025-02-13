@@ -1,19 +1,25 @@
 import React, { useState } from 'react'
 import {IoSearchSharp} from 'react-icons/io5'
 import useConversation from '../../zustand/useConversation'
+import useGetConversations from '../../hooks/useGetConversations'
 const SearchInput = () => {
   const [search,setSearch]=useState("")
   const {setSelectedConversation}=useConversation();
-   
+   const {conversations}=useGetConversations();
   const handleSubmit=(e)=>{
     e.preventDefault();
-    try{
-
+    if(!search){
+      return;
     }
-    catch(error){
-
+    if(search.length<3){
+      return "Search term must be at least 3 characters long";
     }
-  }
+
+    const conversation=conversations.find(conversation=>conversation.name.toLowerCase().includes(search.toLowerCase()));
+    if(conversation){
+      setSelectedConversation(conversation);
+      setSearch("");
+  }}
     return (
     <form onSubmit={handleSubmit} className=' flex justify-center items-center p-2 gap-2 '>
         <input type="text" className='input input-bordered rounded-full' placeholder='Search...' onChange={(e)=>setSearch(e.target.value) } value={search}/>

@@ -15,7 +15,7 @@ const SignIn = () => {
     try {
       setLoading(true)
       const response=await axios.post('http://localhost:3000/api/auth/login',{...inputs},{ withCredentials: true })
-      console.log(response)
+      
       if(response.data.success){
         localStorage.setItem("chat-user",JSON.stringify(response.data.message))
         setAuthUser(response.data.message)

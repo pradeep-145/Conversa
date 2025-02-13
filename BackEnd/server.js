@@ -2,8 +2,7 @@ require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
-
-const app = express()
+const {app,server,io}=require('./socket/socket.js')
 const userModel = require('./models/user.model')
 const authRoute = require('./routes/auth.route')
 const messageRoute = require('./routes/message.route')
@@ -27,6 +26,6 @@ mongoose.connect(process.env.MONGODB_URI).then(() => {
 app.use('/api/auth', authRoute);
 app.use('/api/messages', messageRoute)
 app.use('/api/users', userRoute)
-app.listen(3000, () => {
+server.listen(3000, () => {
     console.log("server is running on http://localhost:3000/")
 })

@@ -5,16 +5,26 @@ import axios from 'axios'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import MessageSkeleton from '../skeletons/MessageSkeleton'
+import { useSocket } from '../../context/SocketContext'
+import notification from '../../assets/notification.mp3'
 
 const Messages = () => {
   const [loading,setLoading]=useState(false)
   const lastMessageRef=useRef()
   const {messages, setMessages, selectedConversation}=useConversation()
+  const {socket}=useSocket();
   useEffect(()=>{
     setTimeout(()=>{
       lastMessageRef.current?.scrollIntoView({behavior:"smooth"})
     },100)
   },[messages])
+  useEffect(()=>{
+    socket?.on("newMessage",(newMessage)=>{
+      const sound=new Audio(notification);
+      sound.play()
+      setMessages([...messages,newMessage])
+    })
+  },[socket , setMessages,messages])
   useEffect(()=>{
     
     const getMessages=async ()=>{

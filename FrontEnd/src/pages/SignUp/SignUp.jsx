@@ -19,11 +19,10 @@ const SignUp = () => {
     e.preventDefault()
     try {
       const response= await axios.post("http://localhost:3000/api/auth/register",{inputs})
-      console.log(response.data.success)
+     
       if(response.data.success){
-        localStorage.setItem('chat-user',JSON.stringify(response.data.message))
-        setAuthUser(response.data.message)
-         navigate('/chat')
+        
+         navigate('/sign-in')
       }
     } catch (error) {
       console.log(error)

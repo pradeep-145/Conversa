@@ -1,6 +1,8 @@
 const Conversation = require('../models/conversation.model');
 const messageModel = require('../models/message.model');
-const Message = require("../models/message.model")
+const Message = require("../models/message.model");
+const { getReceiverSocketId } = require('../socket/socket');
+const {io}=require('../socket/socket')
 const sendMessage = async (req, res) => {
     try {
         const senderId = req.user._id;
@@ -22,7 +24,17 @@ const sendMessage = async (req, res) => {
         if (newMessage) {
             conversation.messages.push(newMessage._id)
         }
+
+
+
         await Promise.all([conversation.save(), newMessage.save()])
+        
+        const receiverSocketId=getReceiverSocketId(receiverId);
+        if(receiverSocketId){
+            io.to(receiverSocketId).emit("newMessage",newMessage)
+            
+        }
+        
         res.status(201).json({ message: newMessage })
 
     }
@@ -30,6 +42,7 @@ const sendMessage = async (req, res) => {
         console.log("Error at messsage controller ", error)
     }
 }
+
 
 
 const getMessages = async (req, res) => {
@@ -42,8 +55,10 @@ const getMessages = async (req, res) => {
         if (!conversation) {
             res.status(200).json([]);
         }
-        const messages = conversation.messages;
-        res.status(200).json(messages)
+        else {
+            var messages = conversation.messages;
+            res.status(200).json(messages)
+        }
     } catch (error) {
         console.log("Error at getMessages", error);
         res.status(500).json({ error: "Internal server Error" });

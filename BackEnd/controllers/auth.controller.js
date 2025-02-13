@@ -1,10 +1,11 @@
 const userModel = require('../models/user.model')
 const { generateToken } = require('../utils/jwt.utils')
 const bcrypt = require('bcryptjs')
-const login = (req, res) => {
+const login = async (req, res) => {
     const { username, password } = req.body;
-    userModel.findOne({ username: username }).then((result) => {
-        if (bcrypt.compare(password, result.password)) {
+    userModel.findOne({ username: username }).then(async(result) => {
+       const isVerified=await  bcrypt.compare(password, result.password)
+        if (isVerified) {
             const payload = {
                 userId: result._id,
                 username: username,

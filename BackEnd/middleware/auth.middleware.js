@@ -2,6 +2,7 @@ const { verify } = require('../utils/jwt.utils');
 const userModel = require('../models/user.model');
 
 const authMiddleware = async (req, res, next) => {
+
     try {
         const token = req.cookies.jwt;
         

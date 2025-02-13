@@ -2,6 +2,7 @@ import React from 'react'
 import Messages from './Messages'
 import MessageInput from './MessageInput'
 import useConversation from '../../zustand/useConversation'
+import { useAuthContext } from '../../context/AuthContext'
 const Chat = () => {
   const {selectedConversation}=useConversation()
   return (
@@ -23,8 +24,10 @@ const Chat = () => {
 export default Chat
 
 const NoChatSelected=()=>{
+  const {authUser}=useAuthContext()
   return(
     <div className='flex-1 flex items-center justify-center'>
+      <p className=''>{authUser.name}</p>
       <p className='text-gray-200 text-xl'>Select a chat to start messaging</p>
     </div>
   )
