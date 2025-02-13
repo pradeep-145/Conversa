@@ -9,7 +9,7 @@ const useLogout = () => {
   const logout=async()=>{
     setLoading(true)
     try{
-        const res=await axios.post('https://conversa-jsog.onrender.com/api/auth/logout')
+        const res=await axios.post(' /api/auth/logout')
         localStorage.removeItem('chat-user')
         setAuthUser(null)
     }

@@ -10,7 +10,7 @@ const MessageInput = () => {
     e.preventDefault()
     try {
       setLoading(true)
-      const res=await axios.post(`https://conversa-jsog.onrender.com/api/messages/send/${selectedConversation._id}`,{message:input},{withCredentials:true})
+      const res=await axios.post(` /api/messages/send/${selectedConversation._id}`,{message:input},{withCredentials:true})
       setInput("")
       setMessages([...messages,res.data.message])
     } catch (error) {
@@ -19,6 +19,7 @@ const MessageInput = () => {
     finally{
       setLoading(false)
     }
+    
 
   }
   return (

@@ -18,7 +18,7 @@ const SignUp = () => {
   const handleSubmit=async (e)=>{
     e.preventDefault()
     try {
-      const response= await axios.post("https://conversa-jsog.onrender.com/api/auth/register",{inputs})
+      const response= await axios.post(" /api/auth/register",{inputs})
      
       if(response.data.success){
         

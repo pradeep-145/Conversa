@@ -7,7 +7,7 @@ const useGetConversations = () => {
         const getConversations=async()=>{
             try {
                 setLoading(true);
-                const res=await axios.get("https://conversa-jsog.onrender.com/api/users",{withCredentials:true})
+                const res=await axios.get(" /api/users",{withCredentials:true})
                 const data=await res.data;
                 setConversations(data)
             } catch (error) {

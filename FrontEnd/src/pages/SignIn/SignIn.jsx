@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
 import axios from 'axios'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuthContext } from '../../context/AuthContext'
 const SignIn = () => {
-  const {authUser,setAuthUser}=useAuthContext()
+  const { authUser, setAuthUser } = useAuthContext()
   const[loading,setLoading]=useState(false)
   const [inputs,setInputs]=useState({
     username:"",
@@ -14,7 +14,7 @@ const SignIn = () => {
     e.preventDefault()
     try {
       setLoading(true)
-      const response=await axios.post('https://conversa-jsog.onrender.com/api/auth/login',{...inputs},{ withCredentials: true })
+      const response=await axios.post(' /api/auth/login',{...inputs},{ withCredentials: true })
       
       if(response.data.success){
         localStorage.setItem("chat-user",JSON.stringify(response.data.message))

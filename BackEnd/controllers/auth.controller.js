@@ -1,6 +1,6 @@
-const userModel = require('../models/user.model');
-const { generateToken } = require('../utils/jwt.utils');
-const bcrypt = require('bcryptjs');
+import bcrypt from 'bcryptjs';
+import userModel from '../models/user.model.js';
+import { generateToken } from '../utils/jwt.utils.js';
 
 const login = async (req, res) => {
     const { username, password } = req.body;
@@ -50,4 +50,5 @@ const logout = (req, res) => {
     }
 };
 
-module.exports = { register, login, logout };
+export { login, logout, register };
+

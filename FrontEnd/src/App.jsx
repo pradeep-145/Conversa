@@ -8,7 +8,6 @@ import { useAuthContext } from './context/AuthContext'
 function App() {
   try {
     const context = useAuthContext();
-    console.log("Auth Context:", context);
 
     const { authUser } = context; // Check if context is defined
     return (

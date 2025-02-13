@@ -13,6 +13,7 @@
   "dependencies": {
     "autoprefixer": "^10.4.20",
     "axios": "^1.7.9",
+    "chat-app": "file:..",
     "frontend": "file:",
     "postcss": "^8.5.1",
     "react": "^18.3.1",
