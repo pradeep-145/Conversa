@@ -10,12 +10,7 @@ const userRoute = require('./routes/user.route')
 const cookieParser = require('cookie-parser')
 app.use(express.json())
 
-app.use(cors({
-    origin: "https://conversa-chat-ps.vercel.app", // Frontend URL
-    credentials: true, // Allow sending cookies
-    allowedHeaders: ["Content-Type", "Authorization"],
-    methods: ["GET", "POST", "PUT", "DELETE"] // Allow necessary methods
-}));
+app.use(cors());
 
 app.use(cookieParser())
 mongoose.connect(process.env.MONGODB_URI).then(() => {
