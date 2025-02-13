@@ -11,7 +11,7 @@ const cookieParser = require('cookie-parser')
 app.use(express.json())
 
 app.use(cors({
-    origin: "http://localhost:3001", // Frontend URL
+    origin: "https://conversa-chat-ps.vercel.app", // Frontend URL
     credentials: true, // Allow sending cookies
     allowedHeaders: ["Content-Type", "Authorization"],
     methods: ["GET", "POST", "PUT", "DELETE"] // Allow necessary methods

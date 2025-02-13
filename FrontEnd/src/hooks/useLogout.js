@@ -9,7 +9,7 @@ const useLogout = () => {
   const logout=async()=>{
     setLoading(true)
     try{
-        const res=await axios.post('http://localhost:3000/api/auth/logout')
+        const res=await axios.post('https://conversa-ucub.onrender.com/api/auth/logout')
         localStorage.removeItem('chat-user')
         setAuthUser(null)
     }

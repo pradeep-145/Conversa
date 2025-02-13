@@ -10,7 +10,7 @@ const MessageInput = () => {
     e.preventDefault()
     try {
       setLoading(true)
-      const res=await axios.post(`http://localhost:3000/api/messages/send/${selectedConversation._id}`,{message:input},{withCredentials:true})
+      const res=await axios.post(`https://conversa-ucub.onrender.com/api/messages/send/${selectedConversation._id}`,{message:input},{withCredentials:true})
       setInput("")
       setMessages([...messages,res.data.message])
     } catch (error) {

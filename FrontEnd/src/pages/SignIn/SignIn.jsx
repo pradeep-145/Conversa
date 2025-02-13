@@ -14,7 +14,7 @@ const SignIn = () => {
     e.preventDefault()
     try {
       setLoading(true)
-      const response=await axios.post('http://localhost:3000/api/auth/login',{...inputs},{ withCredentials: true })
+      const response=await axios.post('https://conversa-ucub.onrender.com/api/auth/login',{...inputs},{ withCredentials: true })
       
       if(response.data.success){
         localStorage.setItem("chat-user",JSON.stringify(response.data.message))

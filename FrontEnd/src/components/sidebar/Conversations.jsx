@@ -11,7 +11,7 @@ const Conversations =() => {
       const getConversations=async()=>{
           try {
               setLoading(true);
-              const res=await axios.get("http://localhost:3000/api/users",{withCredentials:true})
+              const res=await axios.get("https://conversa-ucub.onrender.com/api/users",{withCredentials:true})
               const data=await res.data;
               setConversations(data)
           } catch (error) {
